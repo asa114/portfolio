@@ -871,41 +871,24 @@ section { position: relative; z-index: 1; }
   }
 }
 
-/* ── sibling drift: when any card is hovered, neighbours sway via margin-top ── */
-/* margin-top respects absolute positioning without clashing with per-card rotate() */
-.gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover) {
-  animation: siblingFloat 3.2s ease-in-out infinite;
-}
-.gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover):nth-child(odd) {
-  animation-delay: 0s;
-}
-.gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover):nth-child(even) {
-  animation-delay: 0.22s;
-}
-@keyframes siblingFloat {
-  0%, 100% { margin-top: 0px; }
-  30%      { margin-top: -5px; }
-  65%      { margin-top: 3px; }
-}
-
 /* ── ORGANIC SCATTER LAYOUT ──
    Sizes spread from 50px to 180px — some tiny fragments, some prominent.
    Spacing intentionally uneven: tight clusters of 2-3 cards vs. 20%+ deserts. */
 
-.hint-card:nth-child(1)  { width:198px; height:158px; top: 2px;  left: 6%; transform:rotate(-6.8deg); opacity:0.55; z-index:16; filter:blur(0.2px); backdrop-filter:blur(0.3px); }
-.hint-card:nth-child(2)  { width:120px; height:88px; top:125px; left:22%; transform:rotate( 8.0deg); opacity:0.28; z-index: 7; filter:blur(1.0px); backdrop-filter:blur(1.2px); }
-.hint-card:nth-child(3)  { width:76px; height:56px; top: 70px; left:44%; transform:rotate(-4.5deg); opacity:0.18; z-index: 3; filter:blur(1.8px); backdrop-filter:blur(2.0px); }
-.hint-card:nth-child(4)  { width:162px; height:124px; top: 16px; left:58%; transform:rotate( 5.6deg); opacity:0.38; z-index: 9; filter:blur(0.6px); backdrop-filter:blur(0.7px); }
-.hint-card:nth-child(5)  { width:226px; height:178px; top: 0px;  left:80%; transform:rotate(-3.2deg); opacity:0.50; z-index:12; filter:blur(0.3px); backdrop-filter:blur(0.4px); }
-.hint-card:nth-child(6)  { width:96px; height:70px; top: 46px; left: 4%; transform:rotate( 9.0deg); opacity:0.16; z-index: 2; filter:blur(2.0px); backdrop-filter:blur(2.2px); }
-.hint-card:nth-child(7)  { width:130px; height:98px; top:165px; left:14%; transform:rotate(-7.5deg); opacity:0.22; z-index: 5; filter:blur(1.4px); backdrop-filter:blur(1.6px); }
-.hint-card:nth-child(8)  { width:184px; height:144px; top: 82px; left:20%; transform:rotate( 2.8deg); opacity:0.48; z-index:14; filter:blur(0.3px); backdrop-filter:blur(0.4px); }
-.hint-card:nth-child(9)  { width:88px; height:64px; top:170px; left:36%; transform:rotate(-8.5deg); opacity:0.14; z-index: 1; filter:blur(2.4px); backdrop-filter:blur(2.6px); }
-.hint-card:nth-child(10) { width:140px; height:108px; top: 35px; left:72%; transform:rotate( 6.2deg); opacity:0.32; z-index:11; filter:blur(0.8px); backdrop-filter:blur(0.9px); }
-.hint-card:nth-child(11) { width:102px; height:76px; top:145px; left:56%; transform:rotate(-5.8deg); opacity:0.20; z-index: 4; filter:blur(1.6px); backdrop-filter:blur(1.8px); }
-.hint-card:nth-child(12) { width:70px; height:52px; top:116px; left: 2%; transform:rotate( 4.4deg); opacity:0.12; z-index: 1; filter:blur(2.6px); backdrop-filter:blur(2.8px); }
-.hint-card:nth-child(13) { width:156px; height:120px; top:195px; left:60%; transform:rotate(-1.2deg); opacity:0.15; z-index: 3; filter:blur(2.0px); backdrop-filter:blur(2.2px); }
-.hint-card:nth-child(14) { width:68px; height:50px; top: 28px; left:40%; transform:rotate( 7.8deg); opacity:0.10; z-index: 1; filter:blur(2.8px); backdrop-filter:blur(3.0px); }
+.hint-card:nth-child(1)  { width:198px; height:158px; top: 2px;  left: 6%; transform:rotate(-6.8deg); opacity:0.55; z-index:16; filter:blur(0.2px); }
+.hint-card:nth-child(2)  { width:120px; height:88px; top:125px; left:22%; transform:rotate( 8.0deg); opacity:0.28; z-index: 7; filter:blur(1.0px); }
+.hint-card:nth-child(3)  { width:76px; height:56px; top: 70px; left:44%; transform:rotate(-4.5deg); opacity:0.18; z-index: 3; filter:blur(1.8px); }
+.hint-card:nth-child(4)  { width:162px; height:124px; top: 16px; left:58%; transform:rotate( 5.6deg); opacity:0.38; z-index: 9; filter:blur(0.6px); }
+.hint-card:nth-child(5)  { width:226px; height:178px; top: 0px;  left:80%; transform:rotate(-3.2deg); opacity:0.50; z-index:12; filter:blur(0.3px); }
+.hint-card:nth-child(6)  { width:96px; height:70px; top: 46px; left: 4%; transform:rotate( 9.0deg); opacity:0.16; z-index: 2; filter:blur(2.0px); }
+.hint-card:nth-child(7)  { width:130px; height:98px; top:165px; left:14%; transform:rotate(-7.5deg); opacity:0.22; z-index: 5; filter:blur(1.4px); }
+.hint-card:nth-child(8)  { width:184px; height:144px; top: 82px; left:20%; transform:rotate( 2.8deg); opacity:0.48; z-index:14; filter:blur(0.3px); }
+.hint-card:nth-child(9)  { width:88px; height:64px; top:170px; left:36%; transform:rotate(-8.5deg); opacity:0.14; z-index: 1; filter:blur(2.4px); }
+.hint-card:nth-child(10) { width:140px; height:108px; top: 35px; left:72%; transform:rotate( 6.2deg); opacity:0.32; z-index:11; filter:blur(0.8px); }
+.hint-card:nth-child(11) { width:102px; height:76px; top:145px; left:56%; transform:rotate(-5.8deg); opacity:0.20; z-index: 4; filter:blur(1.6px); }
+.hint-card:nth-child(12) { width:70px; height:52px; top:116px; left: 2%; transform:rotate( 4.4deg); opacity:0.12; z-index: 1; filter:blur(2.6px); }
+.hint-card:nth-child(13) { width:156px; height:120px; top:195px; left:60%; transform:rotate(-1.2deg); opacity:0.15; z-index: 3; filter:blur(2.0px); }
+.hint-card:nth-child(14) { width:68px; height:50px; top: 28px; left:40%; transform:rotate( 7.8deg); opacity:0.10; z-index: 1; filter:blur(2.8px); }
 
 /* gradient masks removed — fully transparent */
 
@@ -1056,7 +1039,7 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    MARQUEE SECTION — hover pause added
    ============================================================ */
-.marquee-section { padding:3rem 0; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:rgba(13,19,13,0.6); backdrop-filter:blur(8px); }
+.marquee-section { padding:3rem 0; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:rgba(13,19,13,0.6); }
 .marquee-track { display:flex; width:max-content; animation:marquee 18s linear infinite; }
 .marquee-track.reverse { animation-direction:reverse; margin-top:1.5rem; }
 .marquee-section:hover .marquee-track { animation-play-state: paused; }
@@ -1871,8 +1854,15 @@ document.querySelectorAll(HOVER_SELECTORS).forEach(el => {
     document.body.classList.remove('cursor-hover');
     hideGlow();
   });
-  // Keep glow box in sync if element moves (e.g. on transform hover)
-  el.addEventListener('mousemove', () => showGlowOn(el));
+  // Keep glow box in sync if element moves (e.g. on transform hover) — throttled
+  let glowMoveThrottle = null;
+  el.addEventListener('mousemove', () => {
+    if(glowMoveThrottle) return;
+    glowMoveThrottle = requestAnimationFrame(() => {
+      showGlowOn(el);
+      glowMoveThrottle = null;
+    });
+  });
 });
 
 /* ============================================================
