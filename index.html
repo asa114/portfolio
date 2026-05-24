@@ -1234,6 +1234,31 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
 
 .lb-media { width:100%; aspect-ratio:16/9; background:var(--k3); display:flex; align-items:center; justify-content:center; border:1px solid var(--border); overflow:hidden; position:relative; margin-bottom:1.5rem; }
 
+/* ── LIGHTBOX IMAGE-ONLY MODE — full bleed, no chrome ── */
+.lb-media.image-only {
+  aspect-ratio: auto;
+  background: transparent;
+  border: none;
+  margin-bottom: 0;
+}
+.lb-media.image-only img,
+.lb-media.image-only video {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+/* Hide info rows when image-only — just the image, the close button, nothing else */
+.lightbox:has(.lb-media.image-only) .lb-info,
+.lightbox:has(.lb-media.image-only) .lb-desc { display: none; }
+.lightbox:has(.lb-media.image-only) .lb-inner {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 2rem;
+}
+.lightbox:has(.lb-media.image-only) .lb-inner::before { display: none; }
+
 /* lb-close: visible target area + press feedback */
 .lb-close {
   position:absolute; top:-2.75rem; right:0;
@@ -2199,10 +2224,27 @@ function closeLB() {
   if(player) player.pause();
   lb.classList.remove('open');
   lbMedia.innerHTML = '';
+  lbMedia.classList.remove('image-only');
+  lbTitle.textContent = '';
+  lbDesc.textContent  = '';
+  lbTags.innerHTML    = '';
 }
 document.getElementById('lbClose').addEventListener('click', closeLB);
 lb.addEventListener('click', e => { if(e.target===lb) closeLB(); });
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
+
+/* ============================================================
+   HINT CARD → LIGHTBOX (image preview)
+   ============================================================ */
+document.querySelectorAll('.hint-card').forEach(card => {
+  card.addEventListener('click', e => {
+    e.stopPropagation();
+    const url = card.style.backgroundImage.replace(/url\(["']?(.*?)["']?\)/, '$1');
+    lbMedia.classList.add('image-only');
+    lbMedia.innerHTML = `<img src="${url}" alt="预览" loading="eager">`;
+    lb.classList.add('open');
+  });
+});
 
 /* ============================================================
    CAROUSEL — 3-slide partial-reveal, CSS-transition driven
