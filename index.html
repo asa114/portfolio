@@ -796,7 +796,6 @@ section { position: relative; z-index: 1; }
   background-color: transparent;
   background-blend-mode: normal;
   border: none;
-  border-radius: 5px;
   box-shadow: none;
   transition:
     opacity 0.35s ease,
@@ -817,20 +816,20 @@ section { position: relative; z-index: 1; }
    Sizes spread from 50px to 180px — some tiny fragments, some prominent.
    Spacing intentionally uneven: tight clusters of 2-3 cards vs. 20%+ deserts. */
 
-.hint-card:nth-child(1)  { width:158px; height:198px; top: 2px;  left: 6%; transform:rotate(-6.8deg); opacity:0.55; z-index:16; filter:blur(0.2px); backdrop-filter:blur(0.3px); }
-.hint-card:nth-child(2)  { width: 88px; height:120px; top:134px; left:28%; transform:rotate( 8.0deg); opacity:0.28; z-index: 7; filter:blur(1.0px); backdrop-filter:blur(1.2px); }
-.hint-card:nth-child(3)  { width: 56px; height: 76px; top: 86px; left:44%; transform:rotate(-4.5deg); opacity:0.18; z-index: 3; filter:blur(1.8px); backdrop-filter:blur(2.0px); }
-.hint-card:nth-child(4)  { width:124px; height:162px; top: 16px; left:58%; transform:rotate( 5.6deg); opacity:0.38; z-index: 9; filter:blur(0.6px); backdrop-filter:blur(0.7px); }
-.hint-card:nth-child(5)  { width:178px; height:226px; top: 0px;  left:80%; transform:rotate(-3.2deg); opacity:0.50; z-index:12; filter:blur(0.3px); backdrop-filter:blur(0.4px); }
-.hint-card:nth-child(6)  { width: 70px; height: 96px; top: 46px; left: 4%; transform:rotate( 9.0deg); opacity:0.16; z-index: 2; filter:blur(2.0px); backdrop-filter:blur(2.2px); }
-.hint-card:nth-child(7)  { width: 98px; height:130px; top:188px; left: 8%; transform:rotate(-7.5deg); opacity:0.22; z-index: 5; filter:blur(1.4px); backdrop-filter:blur(1.6px); }
-.hint-card:nth-child(8)  { width:144px; height:184px; top: 82px; left:20%; transform:rotate( 2.8deg); opacity:0.48; z-index:14; filter:blur(0.3px); backdrop-filter:blur(0.4px); }
-.hint-card:nth-child(9)  { width: 64px; height: 88px; top:200px; left:36%; transform:rotate(-8.5deg); opacity:0.14; z-index: 1; filter:blur(2.4px); backdrop-filter:blur(2.6px); }
-.hint-card:nth-child(10) { width:108px; height:140px; top: 54px; left:72%; transform:rotate( 6.2deg); opacity:0.32; z-index:11; filter:blur(0.8px); backdrop-filter:blur(0.9px); }
-.hint-card:nth-child(11) { width: 76px; height:102px; top:168px; left:56%; transform:rotate(-5.8deg); opacity:0.20; z-index: 4; filter:blur(1.6px); backdrop-filter:blur(1.8px); }
-.hint-card:nth-child(12) { width: 52px; height: 70px; top:116px; left: 2%; transform:rotate( 4.4deg); opacity:0.12; z-index: 1; filter:blur(2.6px); backdrop-filter:blur(2.8px); }
-.hint-card:nth-child(13) { width:120px; height:156px; top:230px; left:60%; transform:rotate(-1.2deg); opacity:0.15; z-index: 3; filter:blur(2.0px); backdrop-filter:blur(2.2px); }
-.hint-card:nth-child(14) { width: 50px; height: 68px; top: 28px; left:40%; transform:rotate( 7.8deg); opacity:0.10; z-index: 1; filter:blur(2.8px); backdrop-filter:blur(3.0px); }
+.hint-card:nth-child(1)  { width:158px; height:198px; top: 2px;  left: 6%; transform:rotate(-6.8deg); opacity:0.55; z-index:16; filter:blur(0.2px); }
+.hint-card:nth-child(2)  { width: 88px; height:120px; top:134px; left:28%; transform:rotate( 8.0deg); opacity:0.28; z-index: 7; filter:blur(1.0px); }
+.hint-card:nth-child(3)  { width: 56px; height: 76px; top: 86px; left:44%; transform:rotate(-4.5deg); opacity:0.18; z-index: 3; filter:blur(1.8px); }
+.hint-card:nth-child(4)  { width:124px; height:162px; top: 16px; left:58%; transform:rotate( 5.6deg); opacity:0.38; z-index: 9; filter:blur(0.6px); }
+.hint-card:nth-child(5)  { width:178px; height:226px; top: 0px;  left:80%; transform:rotate(-3.2deg); opacity:0.50; z-index:12; filter:blur(0.3px); }
+.hint-card:nth-child(6)  { width: 70px; height: 96px; top: 46px; left: 4%; transform:rotate( 9.0deg); opacity:0.16; z-index: 2; filter:blur(2.0px); }
+.hint-card:nth-child(7)  { width: 98px; height:130px; top:188px; left: 8%; transform:rotate(-7.5deg); opacity:0.22; z-index: 5; filter:blur(1.4px); }
+.hint-card:nth-child(8)  { width:144px; height:184px; top: 82px; left:20%; transform:rotate( 2.8deg); opacity:0.48; z-index:14; filter:blur(0.3px); }
+.hint-card:nth-child(9)  { width: 64px; height: 88px; top:200px; left:36%; transform:rotate(-8.5deg); opacity:0.14; z-index: 1; filter:blur(2.4px); }
+.hint-card:nth-child(10) { width:108px; height:140px; top: 54px; left:72%; transform:rotate( 6.2deg); opacity:0.32; z-index:11; filter:blur(0.8px); }
+.hint-card:nth-child(11) { width: 76px; height:102px; top:168px; left:56%; transform:rotate(-5.8deg); opacity:0.20; z-index: 4; filter:blur(1.6px); }
+.hint-card:nth-child(12) { width: 52px; height: 70px; top:116px; left: 2%; transform:rotate( 4.4deg); opacity:0.12; z-index: 1; filter:blur(2.6px); }
+.hint-card:nth-child(13) { width:120px; height:156px; top:230px; left:60%; transform:rotate(-1.2deg); opacity:0.15; z-index: 3; filter:blur(2.0px); }
+.hint-card:nth-child(14) { width: 50px; height: 68px; top: 28px; left:40%; transform:rotate( 7.8deg); opacity:0.10; z-index: 1; filter:blur(2.8px); }
 
 /* gradient mask — fades bottom edge of cards into transparent, then into bg */
 .hint-mask {
@@ -999,7 +998,7 @@ section { position: relative; z-index: 1; }
 /* ============================================================
    MARQUEE SECTION — hover pause added
    ============================================================ */
-.marquee-section { padding:3rem 0; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:rgba(13,19,13,0.6); backdrop-filter:blur(8px); }
+.marquee-section { padding:3rem 0; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:rgba(13,19,13,0.6); }
 .marquee-track { display:flex; width:max-content; animation:marquee 18s linear infinite; }
 .marquee-track.reverse { animation-direction:reverse; margin-top:1.5rem; }
 .marquee-section:hover .marquee-track { animation-play-state: paused; }
