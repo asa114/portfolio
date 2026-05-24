@@ -774,6 +774,82 @@ section { position: relative; z-index: 1; }
 }
 .gallery-title .accent { color: var(--g); text-shadow: 0 0 30px var(--g-glow); }
 
+/* ── GALLERY HEADER RIGHT — hidden glass-card preview stack ── */
+.gallery-header-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* stage: relative container with gradient fade mask at bottom */
+.gallery-hint-stage {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+/* each card: glass morphism backdrop, low-opacity filmstrip feel */
+.hint-card {
+  position: absolute;
+  width: 128px;
+  height: 172px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(13,19,13,0.45);
+  background-blend-mode: overlay;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  opacity: 0.42;
+  backdrop-filter: blur(0.8px);
+  -webkit-backdrop-filter: blur(0.8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s var(--ease-bounce),
+    box-shadow 0.3s ease;
+  cursor: none;
+  will-change: transform;
+}
+.hint-card:hover {
+  opacity: 0.88;
+  z-index: 3;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.55),
+    0 0 24px rgba(0,255,106,0.08);
+  border-color: rgba(0,255,106,0.18);
+}
+
+/* cascade layout — two rows of offset/rotated cards */
+.hint-card:nth-child(1) { top: 10px;  left: 3%;  transform: rotate(-3.5deg); }
+.hint-card:nth-child(2) { top: 4px;   left: 22%; transform: rotate(2.2deg);  }
+.hint-card:nth-child(3) { top: 14px;  left: 41%; transform: rotate(-2.0deg); }
+.hint-card:nth-child(4) { top: 6px;   left: 60%; transform: rotate(3.0deg);  }
+.hint-card:nth-child(5) { top: 90px;  left: 8%;  transform: rotate(1.4deg);  }
+.hint-card:nth-child(6) { top: 82px;  left: 30%; transform: rotate(-2.8deg); }
+.hint-card:nth-child(7) { top: 88px;  left: 50%; transform: rotate(2.5deg);  }
+.hint-card:nth-child(8) { top: 92px;  left: 70%; transform: rotate(-1.6deg); }
+
+/* gradient mask — fades bottom edge of cards into transparent, then into bg */
+.hint-mask {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent 0%, var(--k) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+/* second mask layer: right-edge fade */
+.gallery-hint-stage::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 80px;
+  background: linear-gradient(to right, transparent 0%, rgba(6,10,6,0.85) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
 /* filter-btn: larger tap target — was 0.6rem/0.5rem pad, easy to misclick neighbors */
 .gallery-filter { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
 .filter-btn {
@@ -796,107 +872,7 @@ section { position: relative; z-index: 1; }
 }
 .filter-btn:active { transform: scale(0.96); }
 
-/* ── SIDE CARDS PANEL ── */
-.gallery-layout {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-.gallery-main { flex: 1; min-width: 0; }
-
-.gallery-side {
-  width: 220px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 860px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,255,106,0.25) transparent;
-  padding-right: 4px;
-  padding-top: 2px;
-}
-.gallery-side::-webkit-scrollbar { width: 3px; }
-.gallery-side::-webkit-scrollbar-track { background: transparent; }
-.gallery-side::-webkit-scrollbar-thumb { background: rgba(0,255,106,0.25); border-radius: 3px; }
-
-.side-card {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  aspect-ratio: 16/10;
-  cursor: pointer;
-  transition: opacity 0.3s ease, transform 0.35s var(--ease-bounce), border-color 0.35s ease, box-shadow 0.35s ease;
-  opacity: 0.32;
-  border: 1px solid rgba(255,255,255,0.05);
-  background: var(--k2);
-}
-/* staggered visibility — like a deck of cards */
-.side-card:nth-child(3n+1) { opacity: 0.48; }
-.side-card:nth-child(3n+2) { opacity: 0.38; }
-.side-card:nth-child(3n+3) { opacity: 0.28; }
-.side-card:hover {
-  opacity: 1;
-  transform: translateY(-2px) scale(1.04);
-  border-color: rgba(0,255,106,0.22);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 18px rgba(0,255,106,0.07);
-}
-
-.side-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ── blur veil — partially obscures the image ── */
-.side-card-blur {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  background: rgba(6,10,6,0.28);
-  z-index: 1;
-  border-radius: 6px;
-  pointer-events: none;
-  transition: backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, background 0.4s ease;
-}
-.side-card:hover .side-card-blur {
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  background: rgba(6,10,6,0.04);
-}
-
-/* ── gradient mask — edge fade into background ── */
-.side-card-mask {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 45%,
-    rgba(6,10,6,0.82) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-.side-card:hover .side-card-mask { opacity: 0.25; }
-
-/* top-edge subtle fade */
-.side-card-edge {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 20px;
-  background: linear-gradient(to bottom, rgba(6,10,6,0.35), transparent);
-  z-index: 2;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-.side-card:hover .side-card-edge { opacity: 0.2; }
-
-/* ── MASONRY GRID ── */
+/* MASONRY GRID */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -1296,10 +1272,8 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
   .hero-cta { align-items:flex-start; }
   #works { padding:5rem 2rem; }
   .gallery-header { grid-template-columns:1fr; }
+  .gallery-hint-stage { display:none; }
   .gallery-filter { justify-content:flex-start; }
-  .gallery-layout { flex-direction: column; }
-  .gallery-side { width: 100%; flex-direction: row; max-height: none; overflow-x: auto; overflow-y: hidden; gap: 8px; padding-right: 0; padding-bottom: 4px; }
-  .gallery-side .side-card { width: 160px; flex-shrink: 0; aspect-ratio: 16/10; }
   .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:200px; }
   .work-item { grid-column:span 1 !important; grid-row:span 1 !important; }
   .stats-section { grid-template-columns:1fr 1fr; }
@@ -1448,17 +1422,28 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
 <section id="works">
   <div class="gallery-header reveal">
     <h2 class="gallery-title">精选<br><span class="accent">作品</span></h2>
-    <div class="gallery-filter reveal-group">
-      <button class="filter-btn active" data-filter="all">ALL</button>
-      <button class="filter-btn" data-filter="film">FILM</button>
-      <button class="filter-btn" data-filter="animation">ANIMATION</button>
-      <button class="filter-btn" data-filter="commercial">COMMERCIAL</button>
+    <div class="gallery-header-right">
+      <div class="gallery-hint-stage">
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image1.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image2.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image3.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image4.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image5.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image6.jpeg)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image7.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image8.png)"></div>
+        <div class="hint-mask"></div>
+      </div>
+      <div class="gallery-filter reveal-group">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="film">FILM</button>
+        <button class="filter-btn" data-filter="animation">ANIMATION</button>
+        <button class="filter-btn" data-filter="commercial">COMMERCIAL</button>
+      </div>
     </div>
   </div>
 
-  <div class="gallery-layout">
-    <div class="gallery-main">
-      <div class="gallery-grid reveal-group">
+  <div class="gallery-grid reveal-group">
     <div class="work-item" data-category="film" data-title="练剑千年" data-type="短片 · 院线" data-year="2026" data-desc="一部关于记忆与遗忘的实验短片。在城市的水泥丛林中，一片消失的绿洲成为主角追寻自我的精神图腾。入围釜山独立电影节。" data-tags="剧情短片,实验影像,35mm胶片" data-video>
       <video class="work-video" src="assets/oasis-trailer.mp4" muted loop playsinline preload="metadata"></video>
       <div class="work-bg"></div><div class="work-shape"></div><div class="work-frame"></div><div class="work-scan"></div>
@@ -1501,26 +1486,7 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
       <div class="work-tag">DOCUMENTARY</div>
       <div class="work-overlay"><div class="work-meta"><div class="work-info"><div class="work-type">Short Documentary</div><div class="work-title">流浪海王</div><div class="work-year">2026</div></div><div class="work-arrow">↗</div></div></div>
     </div>
-      </div><!-- /gallery-grid -->
-    </div><!-- /gallery-main -->
-
-  <div class="gallery-side reveal">
-    <div class="side-card"><img src="assets/gallery-side/image1.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image2.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image3.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image4.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image5.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image6.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image7.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image8.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image9.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image10.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image11.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image12.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image13.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
-    <div class="side-card"><img src="assets/gallery-side/image14.jpg" alt="" loading="lazy"><div class="side-card-blur"></div><div class="side-card-mask"></div><div class="side-card-edge"></div></div>
   </div>
-  </div><!-- /gallery-layout -->
 
   <div class="gallery-footer reveal">
     <div class="gallery-footer-count"><strong>07</strong>精选作品 · 完整作品集持续更新</div>
