@@ -784,7 +784,7 @@ section { position: relative; z-index: 1; }
 .gallery-hint-stage {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 320px;
   overflow: hidden;
 }
 
@@ -818,120 +818,30 @@ section { position: relative; z-index: 1; }
 }
 
 /* ── ORGANIC SCATTER LAYOUT ──
-   Each card gets unique: size, position, rotation, opacity, z-index, blur
-   No rows. No grid. No symmetry. Like bubbles drifting apart. */
+   Every card fully independent. No shared horizontal/vertical bands.
+   Gaps vary wildly — some cards nearly touch, others drift far apart.
+   Rotations span -9° to +9°. No pattern, no rhythm. */
 
-/* === NEAR PLANE — big, clear, high z-index === */
-.hint-card:nth-child(1) {
-  width: 126px; height: 170px;
-  top: 18px; left: 2%;
-  transform: rotate(-4.5deg);
-  opacity: 0.55; z-index: 16;
-  filter: blur(0.2px); backdrop-filter: blur(0.3px);
-}
-.hint-card:nth-child(5) {
-  width: 134px; height: 180px;
-  top: 26px; left: 78%;
-  transform: rotate(3.8deg);
-  opacity: 0.52; z-index: 14;
-  filter: blur(0.3px); backdrop-filter: blur(0.4px);
-}
-.hint-card:nth-child(8) {
-  width: 112px; height: 154px;
-  top: 100px; left: 1%;
-  transform: rotate(-2.2deg);
-  opacity: 0.50; z-index: 13;
-  filter: blur(0.4px); backdrop-filter: blur(0.5px);
-}
-
-/* === MID PLANE — medium, slight blur, stacked behind === */
-.hint-card:nth-child(2) {
-  width: 104px; height: 142px;
-  top: 42px; left: 12%;
-  transform: rotate(2.0deg);
-  opacity: 0.38; z-index: 10;
-  filter: blur(0.7px); backdrop-filter: blur(0.8px);
-}
-.hint-card:nth-child(4) {
-  width: 118px; height: 158px;
-  top: 4px; left: 52%;
-  transform: rotate(-4.0deg);
-  opacity: 0.35; z-index: 9;
-  filter: blur(0.8px); backdrop-filter: blur(0.9px);
-}
-.hint-card:nth-child(9) {
-  width: 96px; height: 132px;
-  top: 80px; left: 90%;
-  transform: rotate(4.5deg);
-  opacity: 0.36; z-index: 11;
-  filter: blur(0.6px); backdrop-filter: blur(0.7px);
-}
-.hint-card:nth-child(11) {
-  width: 110px; height: 148px;
-  top: 144px; left: 82%;
-  transform: rotate(-3.5deg);
-  opacity: 0.33; z-index: 10;
-  filter: blur(0.9px); backdrop-filter: blur(1.0px);
-}
-
-/* === FAR PLANE — small, blurred, low opacity, low z === */
-.hint-card:nth-child(3) {
-  width: 82px; height: 116px;
-  top: 72px; left: 34%;
-  transform: rotate(-1.6deg);
-  opacity: 0.22; z-index: 4;
-  filter: blur(1.4px); backdrop-filter: blur(1.6px);
-}
-.hint-card:nth-child(6) {
-  width: 90px; height: 126px;
-  top: 12px; left: 92%;
-  transform: rotate(2.8deg);
-  opacity: 0.20; z-index: 3;
-  filter: blur(1.6px); backdrop-filter: blur(1.8px);
-}
-.hint-card:nth-child(10) {
-  width: 76px; height: 108px;
-  top: 16px; left: 70%;
-  transform: rotate(5.0deg);
-  opacity: 0.18; z-index: 2;
-  filter: blur(2.0px); backdrop-filter: blur(2.2px);
-}
-.hint-card:nth-child(12) {
-  width: 86px; height: 120px;
-  top: 88px; left: 56%;
-  transform: rotate(-4.2deg);
-  opacity: 0.19; z-index: 1;
-  filter: blur(1.8px); backdrop-filter: blur(2.0px);
-}
-
-/* === DRIFTING EDGE — cards fading into the mask already, barely visible === */
-.hint-card:nth-child(7) {
-  width: 68px; height: 96px;
-  top: 160px; left: 20%;
-  transform: rotate(3.0deg);
-  opacity: 0.16; z-index: 6;
-  filter: blur(2.2px); backdrop-filter: blur(2.4px);
-}
-.hint-card:nth-child(13) {
-  width: 74px; height: 104px;
-  top: 170px; left: 68%;
-  transform: rotate(-1.8deg);
-  opacity: 0.14; z-index: 5;
-  filter: blur(2.4px); backdrop-filter: blur(2.6px);
-}
-.hint-card:nth-child(14) {
-  width: 60px; height: 88px;
-  top: 188px; left: 42%;
-  transform: rotate(6.0deg);
-  opacity: 0.10; z-index: 4;
-  filter: blur(3.0px); backdrop-filter: blur(3.2px);
-}
+.hint-card:nth-child(1)  { width:126px; height:170px; top:14px;  left:22%; transform:rotate(-6.8deg); opacity:0.55; z-index:16; filter:blur(0.2px); backdrop-filter:blur(0.3px); }
+.hint-card:nth-child(2)  { width:104px; height:142px; top:58px;  left:78%; transform:rotate( 7.2deg); opacity:0.38; z-index:10; filter:blur(0.7px); backdrop-filter:blur(0.8px); }
+.hint-card:nth-child(3)  { width: 82px; height:116px; top:110px; left:38%; transform:rotate(-3.0deg); opacity:0.22; z-index: 4; filter:blur(1.4px); backdrop-filter:blur(1.6px); }
+.hint-card:nth-child(4)  { width:118px; height:158px; top: 4px;  left:58%; transform:rotate( 5.6deg); opacity:0.35; z-index: 9; filter:blur(0.8px); backdrop-filter:blur(0.9px); }
+.hint-card:nth-child(5)  { width:134px; height:180px; top: 8px;  left: 2%; transform:rotate(-5.0deg); opacity:0.52; z-index:14; filter:blur(0.3px); backdrop-filter:blur(0.4px); }
+.hint-card:nth-child(6)  { width: 90px; height:126px; top:36px;  left:90%; transform:rotate( 8.8deg); opacity:0.20; z-index: 3; filter:blur(1.6px); backdrop-filter:blur(1.8px); }
+.hint-card:nth-child(7)  { width: 68px; height: 96px; top:196px; left:16%; transform:rotate(-7.5deg); opacity:0.16; z-index: 6; filter:blur(2.2px); backdrop-filter:blur(2.4px); }
+.hint-card:nth-child(8)  { width:112px; height:154px; top:72px;  left:14%; transform:rotate( 2.8deg); opacity:0.50; z-index:13; filter:blur(0.4px); backdrop-filter:blur(0.5px); }
+.hint-card:nth-child(9)  { width: 96px; height:132px; top:26px;  left:72%; transform:rotate(-4.2deg); opacity:0.36; z-index:11; filter:blur(0.6px); backdrop-filter:blur(0.7px); }
+.hint-card:nth-child(10) { width: 76px; height:108px; top:124px; left:54%; transform:rotate( 9.0deg); opacity:0.18; z-index: 2; filter:blur(2.0px); backdrop-filter:blur(2.2px); }
+.hint-card:nth-child(11) { width:110px; height:148px; top:172px; left:86%; transform:rotate(-8.2deg); opacity:0.33; z-index:10; filter:blur(0.9px); backdrop-filter:blur(1.0px); }
+.hint-card:nth-child(12) { width: 86px; height:120px; top:148px; left: 6%; transform:rotate( 4.4deg); opacity:0.19; z-index: 1; filter:blur(1.8px); backdrop-filter:blur(2.0px); }
+.hint-card:nth-child(13) { width: 74px; height:104px; top:216px; left:64%; transform:rotate(-0.8deg); opacity:0.14; z-index: 5; filter:blur(2.4px); backdrop-filter:blur(2.6px); }
+.hint-card:nth-child(14) { width: 60px; height: 88px; top:244px; left:40%; transform:rotate( 6.4deg); opacity:0.10; z-index: 4; filter:blur(3.0px); backdrop-filter:blur(3.2px); }
 
 /* gradient mask — fades bottom edge of cards into transparent, then into bg */
 .hint-mask {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 120px;
+  height: 140px;
   background: linear-gradient(to bottom, transparent 0%, var(--k) 100%);
   pointer-events: none;
   z-index: 5;
