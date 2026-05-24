@@ -800,17 +800,66 @@ section { position: relative; z-index: 1; }
   box-shadow: none;
   transition:
     opacity 0.35s ease,
-    transform 0.4s var(--ease-bounce),
+    transform 0.45s var(--ease-bounce),
     filter 0.35s ease;
   cursor: none;
   will-change: transform;
 }
 
+/* ── bottom glow element, hidden by default ── */
+.hint-card::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(0,255,106,0.28) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* hovered card — lift + scale + glow */
 .hint-card:hover {
   opacity: 1 !important;
   z-index: 30 !important;
   filter: blur(0px) !important;
-  box-shadow: none;
+  transform: translateY(-14px) scale(1.22) !important;
+  box-shadow:
+    0 12px 36px rgba(0,255,106,0.08),
+    0 2px 8px rgba(0,0,0,0.3);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s var(--ease-bounce),
+    filter 0.35s ease,
+    box-shadow 0.4s ease;
+}
+.hint-card:hover::after {
+  opacity: 1;
+  animation: hintGlowPulse 2.0s ease-in-out infinite;
+}
+@keyframes hintGlowPulse {
+  0%, 100% { bottom: -22px; width: 85%; }
+  50%      { bottom: -26px; width: 95%; }
+}
+
+/* ── sibling ripple: all non-hovered cards sway gently when any card is hovered ── */
+.gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover) {
+  animation: siblingSway 2.8s ease-in-out infinite;
+}
+.gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover):nth-child(odd) {
+  animation-delay: 0s;
+}
+.gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover):nth-child(even) {
+  animation-delay: 0.18s;
+}
+@keyframes siblingSway {
+  0%, 100% { transform: translateY(0); }
+  20%       { transform: translateY(-3px); }
+  50%       { transform: translateY(2px); }
+  80%       { transform: translateY(-1px); }
 }
 
 /* ── ORGANIC SCATTER LAYOUT ──
