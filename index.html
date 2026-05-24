@@ -2309,21 +2309,23 @@ document.querySelectorAll('.hint-card').forEach(card => {
     });
     current = centerIdx;
     Array.from(dots.children).forEach((d,i) => d.classList.toggle('active', i===centerIdx));
-    locked = true;
   }
 
   function goNext() {
     if(locked) return;
+    locked = true;
     applyPositions((current + 1) % total);
     setTimeout(() => { locked = false; }, 550);
   }
   function goPrev() {
     if(locked) return;
+    locked = true;
     applyPositions((current - 1 + total) % total);
     setTimeout(() => { locked = false; }, 550);
   }
   function goTo(idx) {
     if(idx === current || locked) return;
+    locked = true;
     applyPositions(idx);
     setTimeout(() => { locked = false; }, 550);
     resetTimer();
