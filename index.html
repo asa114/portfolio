@@ -785,23 +785,23 @@ section { position: relative; z-index: 1; }
 .gallery-hint-stage {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 260px;
   overflow: hidden;
 }
 
 /* each card: glass morphism backdrop, low-opacity filmstrip feel */
 .hint-card {
   position: absolute;
-  width: 128px;
-  height: 172px;
-  border-radius: 6px;
+  width: 98px;
+  height: 138px;
+  border-radius: 5px;
   background-size: cover;
   background-position: center;
   background-color: rgba(13,19,13,0.45);
   background-blend-mode: overlay;
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-  opacity: 0.42;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+  opacity: 0.36;
   backdrop-filter: blur(0.8px);
   -webkit-backdrop-filter: blur(0.8px);
   transition:
@@ -812,29 +812,35 @@ section { position: relative; z-index: 1; }
   will-change: transform;
 }
 .hint-card:hover {
-  opacity: 0.88;
+  opacity: 0.9;
   z-index: 3;
   box-shadow:
-    0 12px 40px rgba(0,0,0,0.55),
-    0 0 24px rgba(0,255,106,0.08);
-  border-color: rgba(0,255,106,0.18);
+    0 10px 36px rgba(0,0,0,0.5),
+    0 0 20px rgba(0,255,106,0.06);
+  border-color: rgba(0,255,106,0.16);
 }
 
-/* cascade layout — two rows of offset/rotated cards */
-.hint-card:nth-child(1) { top: 10px;  left: 3%;  transform: rotate(-3.5deg); }
-.hint-card:nth-child(2) { top: 4px;   left: 22%; transform: rotate(2.2deg);  }
-.hint-card:nth-child(3) { top: 14px;  left: 41%; transform: rotate(-2.0deg); }
-.hint-card:nth-child(4) { top: 6px;   left: 60%; transform: rotate(3.0deg);  }
-.hint-card:nth-child(5) { top: 90px;  left: 8%;  transform: rotate(1.4deg);  }
-.hint-card:nth-child(6) { top: 82px;  left: 30%; transform: rotate(-2.8deg); }
-.hint-card:nth-child(7) { top: 88px;  left: 50%; transform: rotate(2.5deg);  }
-.hint-card:nth-child(8) { top: 92px;  left: 70%; transform: rotate(-1.6deg); }
+/* cascade layout — three rows of offset/rotated cards */
+.hint-card:nth-child(1)  { top: 8px;   left: 2%;   transform: rotate(-3.8deg); }
+.hint-card:nth-child(2)  { top: 2px;   left: 14%;  transform: rotate(2.0deg);  }
+.hint-card:nth-child(3)  { top: 10px;  left: 26%;  transform: rotate(-2.4deg); }
+.hint-card:nth-child(4)  { top: 3px;   left: 38%;  transform: rotate(3.2deg);  }
+.hint-card:nth-child(5)  { top: 6px;   left: 50%;  transform: rotate(-1.6deg); }
+.hint-card:nth-child(6)  { top: 12px;  left: 62%;  transform: rotate(2.6deg);  }
+.hint-card:nth-child(7)  { top: 88px;  left: 4%;   transform: rotate(1.2deg);  }
+.hint-card:nth-child(8)  { top: 78px;  left: 18%;  transform: rotate(-3.0deg); }
+.hint-card:nth-child(9)  { top: 92px;  left: 30%;  transform: rotate(2.8deg);  }
+.hint-card:nth-child(10) { top: 82px;  left: 44%;  transform: rotate(-2.2deg); }
+.hint-card:nth-child(11) { top: 86px;  left: 56%;  transform: rotate(1.8deg);  }
+.hint-card:nth-child(12) { top: 76px;  left: 68%;  transform: rotate(-1.2deg); }
+.hint-card:nth-child(13) { top: 172px; left: 6%;   transform: rotate(2.4deg);  }
+.hint-card:nth-child(14) { top: 168px; left: 22%;  transform: rotate(-2.8deg); }
 
 /* gradient mask — fades bottom edge of cards into transparent, then into bg */
 .hint-mask {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 100px;
+  height: 120px;
   background: linear-gradient(to bottom, transparent 0%, var(--k) 100%);
   pointer-events: none;
   z-index: 5;
@@ -1432,6 +1438,12 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
         <div class="hint-card" style="background-image:url(assets/gallery-hint/image6.jpeg)"></div>
         <div class="hint-card" style="background-image:url(assets/gallery-hint/image7.png)"></div>
         <div class="hint-card" style="background-image:url(assets/gallery-hint/image8.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image9.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image10.jpeg)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image11.jpeg)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image12.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image13.png)"></div>
+        <div class="hint-card" style="background-image:url(assets/gallery-hint/image14.png)"></div>
         <div class="hint-mask"></div>
       </div>
       <div class="gallery-filter reveal-group">
