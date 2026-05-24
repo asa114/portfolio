@@ -332,31 +332,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.8rem 5rem;
-  background: rgba(6,10,6,0.35);
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
-  transition: background 0.5s, padding 0.4s, backdrop-filter 0.5s, -webkit-backdrop-filter 0.5s, border-color 0.5s;
-  border-bottom: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: padding 0.4s;
+  border-bottom: none;
 }
-nav.scrolled {
-  background: rgba(6,10,6,0.6);
-  backdrop-filter: blur(48px) saturate(170%);
-  -webkit-backdrop-filter: blur(48px) saturate(170%);
-  padding: 1.4rem 5rem;
-  border-bottom-color: var(--border);
-}
-
-/* ── NAV noise texture ── */
-nav::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 0;
-}
-nav > * { position: relative; z-index: 1; }
+nav.scrolled { padding: 1.4rem 5rem; }
 .nav-logo {
   font-family: var(--font-pixel);
   font-size: 2rem;
@@ -370,8 +352,8 @@ nav > * { position: relative; z-index: 1; }
     0 2px 0 rgba(0,60,30,0.35);
   text-decoration: none;
 }
-.nav-links { display: flex; gap: 3rem; list-style: none; }
-.nav-links a {
+.nav-group { display: flex; align-items: center; gap: 2.5rem; }
+.nav-link-inline {
   font-family: var(--font-pixel);
   font-size: 1rem;
   font-weight: 500;
@@ -391,7 +373,7 @@ nav > * { position: relative; z-index: 1; }
   transition: background 0.3s ease, -webkit-text-fill-color 0.25s, text-shadow 0.2s;
   position: relative;
 }
-.nav-links a:hover {
+.nav-link-inline:hover {
   background: rgba(0,255,106,0.12);
   -webkit-text-fill-color: initial;
   -webkit-background-clip: initial;
@@ -402,7 +384,7 @@ nav > * { position: relative; z-index: 1; }
     0 2px 0 rgba(0,70,30,0.35),
     0 -1px 0 rgba(160,255,200,0.25);
 }
-.nav-links a:active {
+.nav-link-inline:active {
   background: rgba(0,255,106,0.06);
   color: var(--w);
   text-shadow: none;
@@ -1206,6 +1188,7 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
 @media (max-width:900px) {
   nav { padding:1.2rem 2rem; }
   nav.scrolled { padding:1rem 2rem; }
+  .nav-group { gap: 1.2rem; }
   .nav-status { display:none; }
   .hero { padding:0 2rem; }
   .hero::before { left:2rem; right:2rem; }
@@ -1288,14 +1271,16 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">HE·ZIHAO</a>
-  <ul class="nav-links">
-    <li><a href="#works">作品</a></li>
-    <li><a href="#contact">联系</a></li>
-  </ul>
-  <div class="nav-status">
-    <div class="status-dot"></div>
-    AVAILABLE FOR WORK
+  <div class="nav-group">
+    <a href="#" class="nav-logo">HE·ZIHAO</a>
+    <a href="#works" class="nav-link-inline">作品</a>
+  </div>
+  <div class="nav-group">
+    <a href="#contact" class="nav-link-inline">联系</a>
+    <div class="nav-status">
+      <div class="status-dot"></div>
+      AVAILABLE FOR WORK
+    </div>
   </div>
 </nav>
 
