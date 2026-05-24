@@ -832,25 +832,7 @@ section { position: relative; z-index: 1; }
 .hint-card:nth-child(13) { width:120px; height:156px; top:230px; left:60%; transform:rotate(-1.2deg); opacity:0.15; z-index: 3; filter:blur(2.0px); backdrop-filter:blur(2.2px); }
 .hint-card:nth-child(14) { width: 50px; height: 68px; top: 28px; left:40%; transform:rotate( 7.8deg); opacity:0.10; z-index: 1; filter:blur(2.8px); backdrop-filter:blur(3.0px); }
 
-/* gradient mask — fades bottom edge of cards into transparent, then into bg */
-.hint-mask {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent 0%, transparent 40%, var(--k) 100%);
-  pointer-events: none;
-  z-index: 5;
-}
-/* second mask layer: right-edge fade — subtle, only at very edge */
-.gallery-hint-stage::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0; right: 0;
-  width: 40px;
-  background: linear-gradient(to right, transparent 0%, rgba(6,10,6,0.7) 100%);
-  pointer-events: none;
-  z-index: 4;
-}
+/* gradient masks removed — fully transparent */
 
 /* filter-btn: larger tap target — was 0.6rem/0.5rem pad, easy to misclick neighbors */
 .gallery-filter { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
@@ -1440,7 +1422,6 @@ footer { border-top:1px solid var(--border); padding:1.75rem 4rem; display:flex;
         <div class="hint-card" style="background-image:url(assets/gallery-hint/image12.png)"></div>
         <div class="hint-card" style="background-image:url(assets/gallery-hint/image13.png)"></div>
         <div class="hint-card" style="background-image:url(assets/gallery-hint/image14.png)"></div>
-        <div class="hint-mask"></div>
       </div>
       <div class="gallery-filter reveal-group">
         <button class="filter-btn active" data-filter="all">ALL</button>
