@@ -799,11 +799,12 @@ section { position: relative; z-index: 1; }
   border-radius: 5px;
   box-shadow: none;
   transition:
-    opacity 0.35s ease,
-    transform 0.45s var(--ease-bounce),
-    filter 0.35s ease;
+    opacity 0.5s ease,
+    transform 0.5s var(--ease-bounce),
+    filter 0.5s ease,
+    box-shadow 0.6s ease;
   cursor: none;
-  will-change: transform;
+  will-change: transform, box-shadow;
 }
 
 /* ── behind-card glow disc: blurred, enlarged, radiates through all edges ── */
@@ -821,34 +822,34 @@ section { position: relative; z-index: 1; }
   opacity: 0;
   pointer-events: none;
   z-index: -1;
-  transition: opacity 0.45s ease, filter 0.45s ease;
+  transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
-/* hovered card — lift + scale + multi-layer backlight + behind-disc */
+/* ── active card — lift + scale + multi-layer backlight + behind-disc ── */
 .hint-card:hover {
   opacity: 1 !important;
   z-index: 30 !important;
   filter: blur(0px) !important;
-  transform: translateY(-14px) scale(1.22) !important;
+  transform: translateY(-16px) scale(1.22) !important;
   box-shadow:
-    /* 内层 — 白/淡绿柔边，边缘过渡 */
+    /* 内层 — 白/淡绿柔边 */
     0 0 0 2px rgba(200,255,220,0.18),
-    /* 中层 — 主绿光晕，紧贴卡片 */
-    0 0 28px 6px rgba(0,255,106,0.22),
-    0 0 16px 2px rgba(0,200,80,0.14),
-    /* 外层 — 大范围扩散，绿色系 */
-    0 0 64px 18px rgba(0,180,60,0.10),
-    0 0 100px 36px rgba(0,160,50,0.05);
+    /* 中层 — 主绿光晕 */
+    0 0 30px 8px rgba(0,255,106,0.25),
+    0 0 18px 3px rgba(0,200,80,0.16),
+    /* 外层 — 大范围扩散 */
+    0 0 70px 20px rgba(0,180,60,0.12),
+    0 0 110px 40px rgba(0,160,50,0.06);
   transition:
-    opacity 0.35s ease,
-    transform 0.45s var(--ease-bounce),
-    filter 0.35s ease,
-    box-shadow 0.5s ease;
+    opacity 0.5s ease,
+    transform 0.5s var(--ease-bounce),
+    filter 0.5s ease,
+    box-shadow 0.6s ease;
 }
 .hint-card:hover::before {
   opacity: 1;
   filter: blur(16px);
-  animation: backlightBreath 2.4s ease-in-out infinite;
+  animation: backlightBreath 2.6s ease-in-out infinite;
 }
 @keyframes backlightBreath {
   0%, 100% {
@@ -861,29 +862,29 @@ section { position: relative; z-index: 1; }
   }
   50% {
     background: radial-gradient(ellipse at center,
-      rgba(140,255,190,0.28) 0%,
-      rgba(0,255,106,0.14) 35%,
-      rgba(0,200,80,0.05) 65%,
+      rgba(140,255,190,0.30) 0%,
+      rgba(0,255,106,0.15) 35%,
+      rgba(0,200,80,0.06) 65%,
       transparent 100%);
     filter: blur(18px);
   }
 }
 
-/* ── sibling ripple: all non-hovered cards sway gently when any card is hovered ── */
+/* ── sibling drift: when any card is hovered, neighbours sway via margin-top ── */
+/* margin-top respects absolute positioning without clashing with per-card rotate() */
 .gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover) {
-  animation: siblingSway 2.8s ease-in-out infinite;
+  animation: siblingFloat 3.2s ease-in-out infinite;
 }
 .gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover):nth-child(odd) {
   animation-delay: 0s;
 }
 .gallery-hint-stage:has(.hint-card:hover) .hint-card:not(:hover):nth-child(even) {
-  animation-delay: 0.18s;
+  animation-delay: 0.22s;
 }
-@keyframes siblingSway {
-  0%, 100% { transform: translateY(0); }
-  20%       { transform: translateY(-3px); }
-  50%       { transform: translateY(2px); }
-  80%       { transform: translateY(-1px); }
+@keyframes siblingFloat {
+  0%, 100% { margin-top: 0px; }
+  30%      { margin-top: -5px; }
+  65%      { margin-top: 3px; }
 }
 
 /* ── ORGANIC SCATTER LAYOUT ──
