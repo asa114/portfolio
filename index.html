@@ -754,11 +754,10 @@ section { position: relative; z-index: 1; }
 
 .gallery-header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   align-items: end;
-  gap: 1.5rem;
+  gap: 3rem;
   margin-bottom: 2.5rem;
-  /* overflow must be visible so Chinese glyph strokes aren't clipped */
   overflow: visible;
 }
 .gallery-title {
