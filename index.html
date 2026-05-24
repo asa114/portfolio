@@ -2352,6 +2352,17 @@ document.querySelectorAll('.hint-card').forEach(card => {
     if(e.key === 'ArrowLeft')  { goPrev(); resetTimer(); }
     if(e.key === 'ArrowRight') { goNext(); resetTimer(); }
   });
+
+  // ── Click slide → lightbox image preview ──
+  stage.addEventListener('click', e => {
+    const slide = e.target.closest('.carousel-slide');
+    if(!slide) return;
+    const img = slide.querySelector('img');
+    if(!img) return;
+    lbMedia.classList.add('image-only');
+    lbMedia.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="eager">`;
+    lb.classList.add('open');
+  });
 })();
 
 /* counter animation handled by GSAP ScrollTrigger inside initGSAP() above */
