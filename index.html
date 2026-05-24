@@ -2320,10 +2320,9 @@ document.querySelectorAll('.hint-card').forEach(card => {
     applyPositions(idx);
     resetTimer();
   }
-
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(goNext, 5000);
+    timer = setInterval(goNext, 3000);
   }
 
   // Preload check: all images ready, then show first
@@ -2345,7 +2344,7 @@ document.querySelectorAll('.hint-card').forEach(card => {
 
   // Pause on hover
   glass.addEventListener('mouseenter', () => clearInterval(timer));
-  glass.addEventListener('mouseleave', () => { timer = setInterval(goNext, 5000); });
+  glass.addEventListener('mouseleave', () => { timer = setInterval(goNext, 3000); });
 
   // Keyboard
   document.addEventListener('keydown', e => {
