@@ -475,11 +475,7 @@ nav > * { position: relative; z-index: 1; }
 }
 
 /* ── upper: title left + carousel right ── */
-.hero-upper {
-  display: flex;
-  align-items: center;
-  gap: 20rem;
-}
+.hero-upper { display: flex; align-items: center; gap: 4rem; }
 
 .hero-title-group {
   flex: 0 1 auto;
@@ -545,10 +541,7 @@ nav > * { position: relative; z-index: 1; }
    Center full-opacity, prev/next peek from sides at 45% opacity
    Smooth CSS transitions between positions
    ============================================================ */
-.hero-carousel {
-  flex: 1 1 0;
-  max-width: 58%;
-  z-index: 2;
+.hero-carousel { flex: 1 1 0; max-width: 62%; z-index: 2;
   pointer-events: all;
   opacity: 0;
   animation: carouselFadeIn 1.2s var(--ease-snap) 1.0s forwards;
