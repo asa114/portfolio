@@ -584,10 +584,10 @@ nav.scrolled { padding: 1.4rem 5rem; }
     0 6px 24px rgba(0,0,0,0.28),
     0 1px 4px rgba(0,0,0,0.18);
   transition:
-    left 0.65s var(--ease-out),
-    opacity 0.65s var(--ease-out),
-    transform 0.65s var(--ease-out),
-    box-shadow 0.65s ease;
+    left 0.5s var(--ease-out),
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s ease;
 }
 
 /* Main slide positions */
@@ -1794,8 +1794,9 @@ document.addEventListener('mousedown', () => {
 
   // ── CAT ──
   // Spring physics toward fish (mouse position)
-  const springK  = 0.10;  // attraction strength
-  const damping  = 0.78;  // velocity damping (<1 = decay)
+  // Higher springK + damping = snappier response, less lag
+  const springK  = 0.22;  // attraction strength (was 0.10 — way too sluggish)
+  const damping  = 0.84;  // velocity damping (<1 = decay, was 0.78)
   const dx = mx - catX, dy = my - catY;
   catVx = (catVx + dx * springK) * damping;
   catVy = (catVy + dy * springK) * damping;
@@ -2286,6 +2287,7 @@ document.querySelectorAll('.hint-card').forEach(card => {
 
   let current = 0;
   let timer   = null;
+  let locked  = false;  // prevent rapid-fire during CSS transition
 
   // Position calculator: returns [leftSlug, centerSlug, rightSlug]
   function posFor(idx) {
@@ -2307,18 +2309,23 @@ document.querySelectorAll('.hint-card').forEach(card => {
     });
     current = centerIdx;
     Array.from(dots.children).forEach((d,i) => d.classList.toggle('active', i===centerIdx));
+    locked = true;
   }
 
   function goNext() {
+    if(locked) return;
     applyPositions((current + 1) % total);
+    setTimeout(() => { locked = false; }, 550);
   }
   function goPrev() {
+    if(locked) return;
     applyPositions((current - 1 + total) % total);
+    setTimeout(() => { locked = false; }, 550);
   }
   function goTo(idx) {
-    if(idx === current) return;
-    // Shortest path: decide direction for visual consistency
+    if(idx === current || locked) return;
     applyPositions(idx);
+    setTimeout(() => { locked = false; }, 550);
     resetTimer();
   }
   function resetTimer() {
