@@ -2288,6 +2288,7 @@ document.querySelectorAll('.hint-card').forEach(card => {
   let current = 0;
   let timer   = null;
   let locked  = false;  // prevent rapid-fire during CSS transition
+  let paused  = false;  // true while mouse hovers the glass
 
   // Position calculator: returns [leftSlug, centerSlug, rightSlug]
   function posFor(idx) {
@@ -2348,18 +2349,26 @@ document.querySelectorAll('.hint-card').forEach(card => {
     };
   });
 
-  // Arrows
-  prev.addEventListener('click', () => { goPrev(); resetTimer(); });
-  next.addEventListener('click', () => { goNext(); resetTimer(); });
+  // Arrows — only reset timer if not currently paused by hover
+  prev.addEventListener('click', () => { goPrev(); if(!paused) resetTimer(); });
+  next.addEventListener('click', () => { goNext(); if(!paused) resetTimer(); });
 
-  // Pause on hover
-  glass.addEventListener('mouseenter', () => clearInterval(timer));
-  glass.addEventListener('mouseleave', () => { timer = setInterval(goNext, 3000); });
+  // Pause on hover — single source of truth for timer state
+  glass.addEventListener('mouseenter', () => {
+    paused = true;
+    clearInterval(timer);
+    timer = null;
+  });
+  glass.addEventListener('mouseleave', () => {
+    paused = false;
+    clearInterval(timer);
+    timer = setInterval(goNext, 3000);
+  });
 
   // Keyboard
   document.addEventListener('keydown', e => {
-    if(e.key === 'ArrowLeft')  { goPrev(); resetTimer(); }
-    if(e.key === 'ArrowRight') { goNext(); resetTimer(); }
+    if(e.key === 'ArrowLeft')  { goPrev(); if(!paused) resetTimer(); }
+    if(e.key === 'ArrowRight') { goNext(); if(!paused) resetTimer(); }
   });
 
   // ── Click slide → lightbox image preview ──
